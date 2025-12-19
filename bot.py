@@ -1,26 +1,20 @@
 from telegram import Update
 from telegram.ext import ApplicationBuilder, CommandHandler, ContextTypes
 
-TOKEN = "COLE_AQUI_SEU_TOKEN_NOVO"
+TOKEN = 8534364291:AAFraLb4mFXcixaJYVcr1iOoWzomOFX5-bQ
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(
-        "👋 Bem-vindo ao Rapidex!\n\n"
-        "🛵 Motoristas digitem /sou_motorista\n"
-        "👤 Passageiros não precisam se cadastrar."
+        "🤖 Bot online com sucesso!\n\nUse /start para começar."
     )
 
-async def sou_motorista(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text(
-        "🛵 Cadastro de Motorista Rapidex\n\n"
-        "Digite seu nome completo:",
-        parse_mode="Markdown"
-    )
-    context.user_data["etapa"] = "nome"
+def main():
+    app = ApplicationBuilder().token(TOKEN).build()
 
-app = ApplicationBuilder().token(TOKEN).build()
-app.add_handler(CommandHandler("start", start))
-app.add_handler(CommandHandler("sou_motorista", sou_motorista))
+    app.add_handler(CommandHandler("start", start))
 
-app.run_polling()
+    print("Bot iniciado...")
+    app.run_polling()
 
+if _name_ == "_main_":
+    main()
